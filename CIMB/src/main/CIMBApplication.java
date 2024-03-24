@@ -2,7 +2,7 @@ package main;
 
 public class CIMBApplication {
 
-	// CompareVersion Contant
+	// CompareVersion Contants
 	public static int SAME_VERSION = 0;
 	public static int NEW_VERSION = 1;
 	public static int OLD_VERSION = -1;
@@ -26,8 +26,7 @@ public class CIMBApplication {
 		// Test ClimbingStairCase
 //		int n = 2;
 //		int n = 45;
-//		long result = ClimbingStairCase(n);		
-		
+//		long result = ClimbingStairCase(n);				
 		
         System.out.println(result);
     }
@@ -45,10 +44,12 @@ public class CIMBApplication {
 		int max_profit = 0;
 		
 		for(int i=1; i < prices.length; i++) {
+
 			if(prices[i] < min_value) {
 				min_value = prices[i];
 				max_value = prices[i];
 			}
+
 			if(prices[i] > max_value) {
 				max_value = prices[i];
 				if(max_value - min_value > max_profit) {
@@ -78,17 +79,18 @@ public class CIMBApplication {
 			int case_double_step_zero = 1; // EX. staircase 4 : [1,1,1,1] 
 			int case_double_step_one = single_step+double_step; // EX. staircase 4 : [2,1,1] 
 			int case_double_step_max;
-			if(staircase_number%2 == 0) { 
+
+			if (staircase_number%2 == 0) { 
 				case_double_step_max = 1; // EX. staircase 4 : [2, 2]
 			}
 			else { 
 				case_double_step_max = max_double_step+1; // EX. staircase 5 : [2, 2, 1]
-			}
+			}			
 			
-			
-			for(int i=1 ; i<(max_double_step - 1) ; i++) {			
+			for (int i=1 ; i<(max_double_step - 1) ; i++) {			
 				single_step = single_step - 2;
 				double_step = double_step + 1;
+
 				if (single_step < double_step) {					
 					numerator = CalculateNumerator(single_step + double_step, single_step);
 					denumerator = CalculateDenumerator(single_step);
@@ -99,7 +101,8 @@ public class CIMBApplication {
 				}				
 				count_method = count_method + (numerator/denumerator);
 			}
-			if (staircase_number == 2) {
+
+			if (staircase_number == 2) { // case staircase 2 have 2 case [1, 1] and [2]
 				count_method = count_method + case_double_step_zero +  case_double_step_max;
 			}
 			else {
@@ -119,9 +122,11 @@ public class CIMBApplication {
 	 */
 	public static long CalculateNumerator(int total_step, int least_step) {		
 		long numerator = 1;
+
 		for(int i=0; i< least_step ; i++) {
 			numerator = numerator* (total_step-i);
 		}
+
 		return numerator;
 	}
 	
@@ -134,9 +139,11 @@ public class CIMBApplication {
 	 */
 	public static long CalculateDenumerator(int least_step) {
 		long denumerator = 1;
+
 		for(int i=1 ; i<= least_step ; i++) {
 			denumerator = denumerator*i;
 		}
+
 		return denumerator;
 	}
 	
@@ -184,7 +191,7 @@ public class CIMBApplication {
 				break;
 			}
 			else {
-				for(int j=0 ; j<temp1.length() ; j++) {
+				for (int j=0 ; j<temp1.length() ; j++) {
 					if (temp1.charAt(j) > temp2.charAt(j)) {
 						result = NEW_VERSION;
 						exit_flag = true;
@@ -196,7 +203,7 @@ public class CIMBApplication {
 						break;
 					}
 				}
-				if(exit_flag) {
+				if (exit_flag) {
 					break;
 				}
 			}
@@ -216,9 +223,11 @@ public class CIMBApplication {
 		// no non-zero character, return "0"
 		String res = "0"; 
 	    
-	    for (int i = 0; i < num.length(); i++) {	 
+	    for (int i = 0; i < num.length(); i++) {	
+
 	        // check for the first non-zero character
 	        if (num.charAt(i) != '0') {
+
 	            // return the remaining string
 	            res = num.substring(i);
 	            break;
